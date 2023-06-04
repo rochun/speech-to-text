@@ -15,6 +15,7 @@ import {styled} from '@mui/system';
 import { supabase } from '../server/client';
 
 
+
 export const Register = () => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -62,68 +63,72 @@ export const Register = () => {
 
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Stack spacing={1}>
-        <InputLabel htmlFor="email">Email address</InputLabel>
-        <OutlinedInput
-          fullWidth
-          id="email"
-          inputRef={emailRef}
-        />
-      </Stack>
-      <Stack spacing={1}>
-        <InputLabel htmlFor="password">Password</InputLabel>
-        <OutlinedInput
-          fullWidth
-          id="password"
-          type="password"
-          inputRef={passwordRef}
-        />
-      </Stack>
-      <Stack spacing={1}>
-        <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
-        <OutlinedInput
-          fullWidth
-          id="confirmPassword"
-          type="confirmPassword"
-          inputRef={confirmPasswordRef}
-        />
-      </Stack>
-      <Stack direction="row" gap={1}>
-        <Typography>Already a member?</Typography>
-        <Link fontWeight="bold" href="/login">
-          Log in
-        </Link>
-      </Stack>
-      <Button
-        variant="contained"
-        size="large"
-        type="submit"
-        disabled={loading}
-        fullWidth
-      >
-        Sign up
-      </Button>
-      <Collapse sx={{width: '100%'}} in={errorMsg !== '' || msg !== ''}>
-        <Alert
-          severity="error"
-          action={
-            <IconButton
-              aria-label="close"
-              color="inherit"
-              size="small"
-              onClick={() => {
-                setErrorMsg('');
-              }}
+    <PageContainer>
+      <FormContainer gap={2}>
+        <Form onSubmit={handleSubmit}>
+          <Stack spacing={1}>
+            <InputLabel htmlFor="email">Email address</InputLabel>
+            <OutlinedInput
+              fullWidth
+              id="email"
+              inputRef={emailRef}
+            />
+          </Stack>
+          <Stack spacing={1}>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <OutlinedInput
+              fullWidth
+              id="password"
+              type="password"
+              inputRef={passwordRef}
+            />
+          </Stack>
+          <Stack spacing={1}>
+            <InputLabel htmlFor="confirmPassword">Confirm Password</InputLabel>
+            <OutlinedInput
+              fullWidth
+              id="confirmPassword"
+              type="confirmPassword"
+              inputRef={confirmPasswordRef}
+            />
+          </Stack>
+          <Stack direction="row" gap={1}>
+            <Typography>Already a member?</Typography>
+            <Link fontWeight="bold" href="/login">
+              Log in
+            </Link>
+          </Stack>
+          <Button
+            variant="contained"
+            size="large"
+            type="submit"
+            disabled={loading}
+            fullWidth
+          >
+            Sign up
+          </Button>
+          <Collapse sx={{width: '100%'}} in={errorMsg !== '' || msg !== ''}>
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setErrorMsg('');
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
             >
-              <CloseIcon fontSize="inherit" />
-            </IconButton>
-          }
-        >
-          {errorMsg || msg}
-        </Alert>
-      </Collapse>
-    </Form>
+              {errorMsg || msg}
+            </Alert>
+          </Collapse>
+        </Form>
+      </FormContainer>
+    </PageContainer>
   );
 }
 
@@ -134,3 +139,21 @@ const Form = styled('form')({
   alignItems: 'stretch',
   gap: '1rem',
 });
+
+const PageContainer = styled('div')({
+  display: 'flex',
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
+  padding: '2rem 0',
+});
+
+const FormContainer = styled(Stack)(({theme}) => ({
+  maxWidth: '20000px',
+  alignItems: 'center',
+  padding: '2rem',
+  border: '2px solid #e0e0e0',
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: '#fff',
+  margin: '0 16px',
+}));
