@@ -7,26 +7,46 @@ interface Props {
 }
 
 interface UserContext {
-  user: User | undefined;
-  login: Function
+  user?: User | null | undefined;
+  login: Function;
+  signOut: Function;
+  auth?: boolean;
 }
-
-const AuthContext = createContext<UserContext>({});
-
-export const useAuth = () => useContext(AuthContext);
 
 const login = (email: string, password: string) => supabase.auth.signInWithPassword({ email, password });
 
+const signOut = () => supabase.auth.signOut();
+
+const AuthContext = createContext<UserContext>({
+  user: undefined,
+  login: login,
+  signOut: signOut,
+  auth: undefined,
+});
+
+export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | undefined>();
+  const [user, setUser] = useState<User | null | undefined>();
   const [auth, setAuth] = useState(false);
+  const [loading, setLoading] = useState<Boolean | null>(null);
 
   useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+    setLoading(true);
+    const getUser = async () => {
+      const { data } = await supabase.auth.getUser();
+      const { user: currentUser } = data;
+      setUser(currentUser ?? null);
+      setLoading(false);
+    };
+    getUser();
+    const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (event === "SIGNED_IN") {
         setUser(session?.user);
         setAuth(true);
+      } else if (event === "SIGNED_OUT") {
+        setUser(null);
+        setAuth(false);
       }
     });
     return () => {
@@ -35,8 +55,8 @@ const AuthProvider = ({ children }: Props) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, login }}>
-      {children}
+    <AuthContext.Provider value={{ auth, user, login, signOut }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
