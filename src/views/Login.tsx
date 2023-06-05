@@ -19,7 +19,7 @@ export const Login = () => {
   const passwordRef = useRef<HTMLInputElement>(null);
   const [errorMsg, setErrorMsg] = useState("");
   const [loading, setLoading] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -37,7 +37,7 @@ export const Login = () => {
         error
       } = await login(emailRef.current.value, passwordRef.current.value);
       if (error) setErrorMsg(error.message);
-      // if (user && session) navigate("/");
+      if (user && session) navigate("/home");
     } catch (error) {
       setErrorMsg("Email or Password Incorrect");
     }

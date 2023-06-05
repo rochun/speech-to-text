@@ -12,6 +12,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import {styled} from '@mui/system';
+import { link, useNavigate } from 'react-router-dom';
 import { supabase } from '../server/client';
 
 
@@ -23,6 +24,7 @@ export const Register = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const register = (email: string, password: string) => {
     return supabase.auth.signUp({ email, password });
@@ -54,6 +56,7 @@ export const Register = () => {
         setMsg(
           "Registration Successful. Check your email to confirm your account"
         );
+        setTimeout(() => {navigate('/login')}, 3000);
       }
     } catch (error) {
       setErrorMsg("Error in Creating Account");
@@ -88,7 +91,7 @@ export const Register = () => {
             <OutlinedInput
               fullWidth
               id="confirmPassword"
-              type="confirmPassword"
+              type="password"
               inputRef={confirmPasswordRef}
             />
           </Stack>
