@@ -1,6 +1,6 @@
-import { createContext, useContext, useState, ReactNode, useEffect, SetStateAction } from 'react';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 import { supabase } from '../server/client';
-import { AuthSession, User } from '@supabase/supabase-js';
+import { User } from '@supabase/supabase-js';
 
 interface Props {
   children?: ReactNode;
@@ -27,16 +27,18 @@ const AuthContext = createContext<UserContext>({
 export const useAuth = () => useContext(AuthContext);
 
 const AuthProvider = ({ children }: Props) => {
-  const [user, setUser] = useState<User | null | undefined>();
+  const [user, setUser] = useState<User | null | undefined>(null);
   const [auth, setAuth] = useState(false);
-  const [loading, setLoading] = useState<Boolean | null>(null);
+  const [loading, setLoading] = useState<Boolean>(true);
 
   useEffect(() => {
     setLoading(true);
     const getUser = async () => {
       const { data } = await supabase.auth.getUser();
       const { user: currentUser } = data;
+      console.log(auth, currentUser);
       setUser(currentUser ?? null);
+      setAuth(currentUser ? true : false);
       setLoading(false);
     };
     getUser();
