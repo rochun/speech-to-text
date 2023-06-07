@@ -58,23 +58,20 @@ export const Dashboard = () => {
     if (note_id === selectedNote?.id) {
       setSelectedNote(null);
     }
-    const response = await deleteNotes(note_id);
+    await deleteNotes(note_id);
     const newList = notesList?.filter((note) => note.id !== note_id);
-    console.log(response);
     newList?.sort((a: any, b: any) => (Number(new Date(b.updated_at)) - Number(new Date(a.updated_at))));
     setNotesList(newList);
   };
 
   const handleSave = async () => {
-    const response = await createNotes(user?.id, note);
+    await createNotes(user?.id, note);
     setNote('');
-    console.log(response);
     retrieveNotes();
   };
 
   const handleEdit = async () => {
-    const response = await updateNotes(selectedNote?.id, selectedNote?.note);
-    console.log(response);
+    await updateNotes(selectedNote?.id, selectedNote?.note);
     retrieveNotes();
   };
 
