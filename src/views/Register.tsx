@@ -12,9 +12,8 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import {styled} from '@mui/system';
-import { link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { supabase } from '../server/client';
-
 
 
 export const Register = () => {

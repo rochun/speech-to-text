@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   OutlinedInput,
   InputLabel,
@@ -73,7 +73,7 @@ export const Login = () => {
               New User?
             </Link>
           </Stack>
-          <Button variant="contained" size="large" type="submit" fullWidth>
+          <Button variant="contained" disabled={loading} size="large" type="submit" fullWidth>
             Sign in
           </Button>
           <Collapse sx={{width: '100%'}} in={errorMsg !== ''}>
