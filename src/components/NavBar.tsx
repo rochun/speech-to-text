@@ -21,7 +21,7 @@ const settings = ['Profile', 'Account'];
 export const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null);
-  const { auth, signOut } = useAuth();
+  const { signOut } = useAuth();
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
@@ -58,7 +58,6 @@ export const NavBar = () => {
             variant="h6"
             noWrap
             component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -69,7 +68,9 @@ export const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            Speech2Text
+            <Link to={'/home'} style={{textDecoration: 'none', color: 'white'}}>
+              Speech2Text
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -117,7 +118,6 @@ export const NavBar = () => {
             variant="h5"
             noWrap
             component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -129,7 +129,9 @@ export const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            Speech2Text
+            <Link to={'/home'} style={{textDecoration: 'none', color: 'white'}}>
+              Speech2Text
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page, index) => (
