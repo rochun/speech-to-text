@@ -15,7 +15,7 @@ export const AudioRecorder = ({ note, recording, transcribing, startRecording, s
   return (
 
     <Stack spacing={2} sx={{ maxWidth: '400px', alignItems: 'center', border: 'solid', padding: '1em'}}>
-    Notes:
+    Note:
       <TextField
           id="filled-multiline-static"
           multiline

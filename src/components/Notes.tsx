@@ -11,9 +11,10 @@ interface NotesProps {
   handleDelete: (note_id: string) => Promise<void>;
   setSelectedNote: React.Dispatch<React.SetStateAction<{[x: string]: any;} | null | undefined>>;
   selected: boolean;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const Note = ({ note, handleDelete, setSelectedNote, selected } : NotesProps) => {
+export const Note = ({ note, handleDelete, setSelectedNote, selected, setToggle } : NotesProps) => {
 
   return (
     <ListItem
@@ -37,6 +38,7 @@ export const Note = ({ note, handleDelete, setSelectedNote, selected } : NotesPr
         onClick={() => {
           console.log(note);
           setSelectedNote(note);
+          setToggle(false);
         }}
         selected={selected}
       >

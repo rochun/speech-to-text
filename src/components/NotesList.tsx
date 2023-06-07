@@ -6,8 +6,9 @@ interface NotesListProps {
   handleDelete: (note_id: string) => Promise<void>;
   setSelectedNote: React.Dispatch<React.SetStateAction<{[x: string]: any;} | null | undefined>>;
   selectedNote: {[x: string]: any;} | null | undefined;
+  setToggle: React.Dispatch<React.SetStateAction<boolean>>;
 }
-export const NotesList = ({notes, handleDelete, setSelectedNote, selectedNote} : NotesListProps ) => {
+export const NotesList = ({notes, handleDelete, setSelectedNote, selectedNote, setToggle} : NotesListProps ) => {
   return (
     <List sx={{
       width: '100%',
@@ -28,6 +29,7 @@ export const NotesList = ({notes, handleDelete, setSelectedNote, selectedNote} :
               handleDelete={handleDelete}
               setSelectedNote={setSelectedNote}
               selected={selected}
+              setToggle={setToggle}
             />)
       })
       : null}

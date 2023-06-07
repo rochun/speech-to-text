@@ -83,7 +83,7 @@ export const Dashboard = () => {
         {note}
 
       {
-        !selectedNote ?
+        !selectedNote || toggle ?
         <AudioRecorder
           note={note}
           recording={recording}
@@ -97,12 +97,13 @@ export const Dashboard = () => {
           note={selectedNote.note}
           handleEdit={handleEdit}
           handleEditChange={handleEditChange}
+          setToggle={setToggle}
         />
       }
 
 
 
-      <NotesList notes={notesList} handleDelete={handleDelete} setSelectedNote={setSelectedNote} selectedNote={selectedNote} />
+      <NotesList notes={notesList} handleDelete={handleDelete} setSelectedNote={setSelectedNote} selectedNote={selectedNote} setToggle={setToggle}/>
     </div>
   )
 };
