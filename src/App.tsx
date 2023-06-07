@@ -1,10 +1,8 @@
-import { useState } from 'react';
 import { Route, Routes } from "react-router-dom";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import { Register } from './views/Register';
 import { Home } from "./views/Home";
 import { Login } from './views/Login';
-import { NavBar } from './components/NavBar';
 import { NavbarLayout } from './components/NavbarLayout';
 
 function App() {
