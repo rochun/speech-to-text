@@ -50,10 +50,10 @@ export const NavBar = () => {
   };
 
   return (
-    <AppBar position="static" sx={{borderRadius: '16px'}}>
+    <AppBar position="static" sx={{ backgroundColor: 'unset', boxShadow: 'unset'}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <MicExternalOnIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <MicExternalOnIcon sx={{ display: { xs: 'none', md: 'flex' }, color: 'black', mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -61,14 +61,13 @@ export const NavBar = () => {
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            <Link to={'/home'} style={{textDecoration: 'none', color: 'white'}}>
+            <Link to={'/home'} style={{textDecoration: 'none', color: 'black'}}>
               Speech2Text
             </Link>
           </Typography>
@@ -80,7 +79,7 @@ export const NavBar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              color="black"
             >
               <MenuIcon />
             </IconButton>
@@ -122,14 +121,13 @@ export const NavBar = () => {
               mr: 2,
               display: { xs: 'flex', md: 'none' },
               flexGrow: 1,
-              fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            <Link to={'/home'} style={{textDecoration: 'none', color: 'white'}}>
+            <Link to={'/home'} style={{textDecoration: 'none', color: 'black'}}>
               Speech2Text
             </Link>
           </Typography>
@@ -138,9 +136,9 @@ export const NavBar = () => {
               <Button
                 key={index}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{ my: 2, color: 'black', display: 'block' }}
               >
-                <Link to={`/${page}`} style={{textDecoration: 'none', color: 'white'}}>
+                <Link to={`/${page}`} style={{textDecoration: 'none', color: 'black'}}>
                   {page}
                 </Link>
               </Button>

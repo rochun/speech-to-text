@@ -6,6 +6,8 @@ import { NotesList } from './NotesList';
 import { getNotes, deleteNotes, updateNotes } from '../server/userNotes';
 import { AudioRecorder } from './AudioRecorder';
 import { NoteEditor } from './NoteEditor';
+// import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
 
 export const Dashboard = () => {
   const {
@@ -22,9 +24,9 @@ export const Dashboard = () => {
   });
   const { user } = useAuth();
   const [ note, setNote ] = useState<string | undefined>('');
-  const [ notesList, setNotesList ] = useState<{ [x: string]: any; }[] | null | undefined>([]);
+  const [ notesList, setNotesList ] = useState<{ [x: string]: any; }[] | null | undefined>(null);
   const [ selectedNote, setSelectedNote ] = useState<{ [x: string]: any; } | null | undefined>(null);
-  const [toggle, setToggle] = useState<boolean>(false);
+  const [ toggle, setToggle ] = useState<boolean>(false);
 
   useEffect(() => {
     setNote(transcript.text);
@@ -76,34 +78,42 @@ export const Dashboard = () => {
   };
 
   return (
-    <div>
-        <p>Recording: {recording.toString()}</p>
-        <p>Speaking: {speaking.toString()}</p>
-        <p>Transcribing: {transcribing.toString()}</p>
-        {note}
-
-      {
-        !selectedNote || toggle ?
-        <AudioRecorder
-          note={note}
-          recording={recording}
-          transcribing={transcribing}
-          startRecording={startRecording}
-          stopRecording={stopRecording}
-          handleSave={handleSave}
-          handleInputChange={handleInputChange}
-        /> :
-        < NoteEditor
-          note={selectedNote.note}
-          handleEdit={handleEdit}
-          handleEditChange={handleEditChange}
-          setToggle={setToggle}
-        />
-      }
-
-
-
-      <NotesList notes={notesList} handleDelete={handleDelete} setSelectedNote={setSelectedNote} selectedNote={selectedNote} setToggle={setToggle}/>
+    <div style={{ marginTop: '2em'}}>
+      <Box width="100%" maxWidth='800px' margin='0 auto'>
+        <Box sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gap: 2
+        }}>
+          <Box sx={{
+            gridColumn: {xs: 'span 3', md: 'span 2'}
+          }}>
+            {
+              !selectedNote || toggle ?
+              <AudioRecorder
+                note={note}
+                recording={recording}
+                speaking={speaking}
+                transcribing={transcribing}
+                startRecording={startRecording}
+                stopRecording={stopRecording}
+                handleSave={handleSave}
+                handleInputChange={handleInputChange}
+              /> :
+              < NoteEditor
+                note={selectedNote.note}
+                handleEdit={handleEdit}
+                handleEditChange={handleEditChange}
+                setToggle={setToggle}
+              />
+            }
+          </Box>
+          <Box sx={{
+            gridColumn: {xs: 'span 3', md: 'span 1'}}}>
+            <NotesList notes={notesList} handleDelete={handleDelete} setSelectedNote={setSelectedNote} selectedNote={selectedNote} setToggle={setToggle}/>
+          </Box>
+        </Box>
+      </Box>
     </div>
   )
 };
