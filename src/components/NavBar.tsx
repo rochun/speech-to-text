@@ -15,7 +15,7 @@ import MicExternalOnIcon from '@mui/icons-material/MicExternalOn';
 import { useAuth } from "../context/AuthProvider";
 import { Link } from "react-router-dom";
 
-const pages = ['home', 'notes', 'translation'];
+const pages = ['home', 'notes'];
 const settings = ['Profile', 'Account'];
 
 export const NavBar = () => {
