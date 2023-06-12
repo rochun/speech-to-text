@@ -51,7 +51,7 @@ export const Note = ({ note, handleDelete, setSelectedNote, selected, setToggle 
                 variant="body2"
                 color="text.primary"
               >
-                {new Date(note.updated_at).toDateString()}
+                {new Date(note?.updated_at).toDateString()}
               </Typography>
               {note?.note ? ' - '+ note.note.substr(0, 100) + '...' : null}
             </React.Fragment>

@@ -12,11 +12,13 @@ export const NotesList = ({notes, handleDelete, setSelectedNote, selectedNote, s
   return (
     <List sx={{
       width: '100%',
-      maxWidth: 360,
+      minWidth: {md: '260px'},
       bgcolor: 'background.paper',
+      padding: '0',
       overflow: 'auto',
       height: '30em',
       borderStyle: 'solid',
+      borderRadius: '16px',
     }}>
       {notes?.length ? notes.map((note: any) => {
           let selected = false;
