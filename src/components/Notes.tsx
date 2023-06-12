@@ -50,10 +50,13 @@ export const Note = ({ note, handleDelete, setSelectedNote, selected, setToggle 
                 component="span"
                 variant="body2"
                 color="text.primary"
+                fontWeight='600'
               >
                 {new Date(note?.updated_at).toDateString()}
               </Typography>
-              {note?.note ? ' - '+ note.note.substr(0, 100) + '...' : null}
+              <Typography fontSize='14px'>
+                {note?.note ? note.note.substr(0, 100) + '...' : null}
+              </Typography>
             </React.Fragment>
           }
         />
