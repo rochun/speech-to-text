@@ -34,7 +34,17 @@ npm run preview
 
 ## Demo ##
 
-coming soon
+Recording Voicenote:
+![](https://github.com/codingavatar/medplanner/blob/main/demo/add-appt.gif](https://github.com/rochun/speech-to-text/blob/main/src/assets/gif_demo/recording_demo.gif)
+
+Saving Note:
+![](https://github.com/rochun/speech-to-text/blob/main/src/assets/gif_demo/save_demo.gif)
+
+Editing Note:
+![](https://github.com/rochun/speech-to-text/blob/main/src/assets/gif_demo/edit_demo.gif)
+
+Deleting Note:
+![](https://github.com/rochun/speech-to-text/blob/main/src/assets/gif_demo/delete_demo.gif)
 
 ## Contributor ##
 <table>
